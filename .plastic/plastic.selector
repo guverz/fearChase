@@ -1,4 +1,0 @@
-repository "FearChase/FearChase@9072258548201@cloud"
-  path "/"
-    br "/main"
-    co "/main"
