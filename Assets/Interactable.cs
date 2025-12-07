@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UI;
 
 public class Interactable : MonoBehaviour
 {
@@ -15,6 +14,7 @@ public class Interactable : MonoBehaviour
     void Start()
     {
         outline = GetComponent<Outline>();
+        //EnableOutline();
         DisableOutline();
     }
     public void Interact()
@@ -23,17 +23,11 @@ public class Interactable : MonoBehaviour
     }
     public void DisableOutline()
     {
-        outline.enabled = false;
+        outline.OutlineWidth = 0f;
     }
 
     public void EnableOutline()
     {
-        outline.enabled = true;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        outline.OutlineWidth = 2f;
     }
 }

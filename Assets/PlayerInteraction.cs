@@ -6,12 +6,6 @@ public class PlayerInteraction : MonoBehaviour
 {
     public float playerReach = 3f;
     Interactable currentInteractable;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -26,12 +20,15 @@ public class PlayerInteraction : MonoBehaviour
     {
         RaycastHit hit;
         Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
-        if (Physics.Raycast(ray, out hit, playerReach))
+
+        if (Physics.Raycast(ray, out hit, playerReach)) // if looking at an interactable object
         {
+            //Debug.Log("Raycast hit: " + hit.collider.name);
             if (hit.collider.tag == "Interactable")
             {
                 Interactable newInteractable = hit.collider.GetComponent<Interactable>();
 
+                // if there is a currentInteractable and it is not the newInteractable
                 if (currentInteractable && newInteractable != currentInteractable)
                 {
                     currentInteractable.DisableOutline();
@@ -41,13 +38,14 @@ public class PlayerInteraction : MonoBehaviour
                     SetNewCurrentInteractable(newInteractable);
                 }
             }
-            else
+            else // if new interactable is not enabled
             {
                 DisableCurrentInteractable();
             }
         }
-        else
+        else 
         {
+            //Debug.Log("Raycast hit nothing");
             DisableCurrentInteractable();
         }
     }
